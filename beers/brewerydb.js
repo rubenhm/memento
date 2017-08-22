@@ -73,7 +73,7 @@ Brewery.prototype.extra = function(id) {
     if (result.style !== undefined) 
         result['style'] = result.style.map(function(e) { return e.id + ";" + e.name + ". " + e.description; }).join("\n");
     if (result.glass !== undefined) 
-        result['glass'] = result.glass.map(function(e) { return e.id + "; " + return e.name; }).join("\n");
+        result['glass'] = result.glass.map(function(e) { return e.id + "; " + e.name; }).join("\n");
     if (result.labels !== undefined)
         result['labels'] = result.labels.map(function(e) { return e.medium; }).join();
     if (result.foodPairings !== undefined) 
@@ -81,6 +81,6 @@ Brewery.prototype.extra = function(id) {
     if (result.description !== undefined) 
         result['description'] = result.description.map(function(e) { return e.description; }).join();
     if (result.available !== undefined) 
-        result['available'] = result.available.map(function(e) { return e.name + ": " + return e.description; }).join("\n");
+        result['available'] = result.available.map(function(e) { return e.name + ": " + e.description; }).join("\n");
     return result;
 }
