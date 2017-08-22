@@ -30,7 +30,9 @@ Issue a search query to Brewery database.
 Brewery.prototype.search = function(query) {
   var result = http().get(baseurl + "search?q=" + encodeURIComponent(query) + "&key=" + this.apiKey + "&type=" + this.type);
   var json = JSON.parse(result.body);
+  console.log(result)
   return json.results;  
+
 }
 
 /*
@@ -63,24 +65,24 @@ Brewery.prototype.extra = function(id) {
     var resultJson = http().get(baseurl + this.type + "/" + id + "/" + "?key=" + this.apiKey );
     var result = JSON.parse(resultJson.body); 
     if (result.id !== undefined) 
-        result['id'] = result.id.map(function(e) { return e.id; }).join();
+        result['id'] = result.id ;
     if (result.name !== undefined) 
-        result['name'] = result.name.map(function(e) { return e.name; }).join();
+        result['name'] = result.name;
     if (result.abv !== undefined)
-        result['abv'] = result.abv.map(function(e) { return e.abv; }).join();
+        result['abv'] = result.abv;
     if (result.ibu !== undefined)  
-        result['ibu'] = result.ibu.map(function(e) { return e.ibu; }).join();
+        result['ibu'] = result.ibu;
     if (result.style !== undefined) 
-        result['style'] = result.style.map(function(e) { return e.id + ";" + e.name + ". " + e.description; }).join("\n");
+        result['style'] = result.style['id'] + ";" + result.style['name'] + ". " + result.style['description'];
     if (result.glass !== undefined) 
-        result['glass'] = result.glass.map(function(e) { return e.id + "; " + e.name; }).join("\n");
+        result['glass'] = result.glass['id'] + "; " + result.glass['name'];
     if (result.labels !== undefined)
-        result['labels'] = result.labels.map(function(e) { return e.medium; }).join();
+        result['labels'] = result.labels['medium']';
     if (result.foodPairings !== undefined) 
-        result['foodPairings'] = result.foodPairings.map(function(e) { return e.foodPairings; }).join();
+        result['foodPairings'] = result.foodPairings;
     if (result.description !== undefined) 
-        result['description'] = result.description.map(function(e) { return e.description; }).join();
+        result['description'] = result.description;
     if (result.available !== undefined) 
-        result['available'] = result.available.map(function(e) { return e.name + ": " + e.description; }).join("\n");
+        result['available'] = result.available['name'] + ": " + result.available['description'];
     return result;
 }
