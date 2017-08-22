@@ -30,7 +30,6 @@ Issue a search query to Brewery database.
 Brewery.prototype.search = function(query) {
   var result = http().get(baseurl + "search?q=" + encodeURIComponent(query) + "&key=" + this.apiKey + "&type=" + this.type);
   var json = JSON.parse(result.body);
-  console.log(result)
   return json.results;  
 
 }
