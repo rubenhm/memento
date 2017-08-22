@@ -77,7 +77,7 @@ Brewery.prototype.extra = function(id) {
     if (result.glass !== undefined) 
         result['glass'] = result.glass['id'] + "; " + result.glass['name'];
     if (result.labels !== undefined)
-        result['labels'] = result.labels['medium']';
+        result['labels'] = result.labels['medium'];
     if (result.foodPairings !== undefined) 
         result['foodPairings'] = result.foodPairings;
     if (result.description !== undefined) 
