@@ -64,24 +64,24 @@ Brewery.prototype.extra = function(id) {
     var resultJson = http().get(baseurl + this.type + "/" + id + "/" + "?key=" + this.apiKey );
     var result = JSON.parse(resultJson.body); 
     if (result.id !== undefined) 
-        result['id'] = result.id ;
+        result['id'] = result.data.id ;
     if (result.name !== undefined) 
-        result['name'] = result.name;
+        result['name'] = result.data.name;
     if (result.abv !== undefined)
-        result['abv'] = result.abv;
+        result['abv'] = result.data.abv;
     if (result.ibu !== undefined)  
-        result['ibu'] = result.ibu;
+        result['ibu'] = result.data.ibu;
     if (result.style !== undefined) 
-        result['style'] = result.style['id'] + ";" + result.style['name'] + ". " + result.style['description'];
+        result['style'] = result.data.style['id'] + ";" + result.data.style['name'] + ". " + result.data.style['description'];
     if (result.glass !== undefined) 
-        result['glass'] = result.glass['id'] + "; " + result.glass['name'];
+        result['glass'] = result.data.glass['id'] + "; " + result.data.glass['name'];
     if (result.labels !== undefined)
-        result['labels'] = result.labels['medium'];
+        result['labels'] = result.data.labels['medium'];
     if (result.foodPairings !== undefined) 
-        result['foodPairings'] = result.foodPairings;
+        result['foodPairings'] = result.data.foodPairings;
     if (result.description !== undefined) 
-        result['description'] = result.description;
+        result['description'] = result.data.description;
     if (result.available !== undefined) 
-        result['available'] = result.available['name'] + ": " + result.available['description'];
+        result['available'] = result.data.available['name'] + ": " + result.data.available['description'];
     return result;
 }
