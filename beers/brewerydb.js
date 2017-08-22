@@ -73,9 +73,9 @@ Brewery.prototype.extra = function(id) {
     if (res.data.ibu !== undefined)  
         result['ibu'] = res.data.ibu;
     if (res.data.style !== undefined) 
-        result['style'] = res.data.style['id'] + ";" + res.data.style['name'] + ". " + res.data.style['description'];
+        result['style'] = res.data.style['name'] + ".\n" + res.data.style['description'];
     if (res.data.glass !== undefined) 
-        result['glass'] = res.data.glass['id'] + "; " + res.data.glass['name'];
+        result['glass'] = res.data.glass['name'];
     if (res.data.labels !== undefined)
         result['labels'] = res.data.labels['medium'];
     if (res.data.foodPairings !== undefined) 
@@ -83,6 +83,6 @@ Brewery.prototype.extra = function(id) {
     if (res.data.description !== undefined) 
         result['description'] = res.data.description;
     if (res.data.available !== undefined) 
-        result['available'] = res.data.available['name'] + ": " + res.data.available['description'];
+        result['available'] = res.data.available['name'] + ".\n" + res.data.available['description'];
     return result;
 }
