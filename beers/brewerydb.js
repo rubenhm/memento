@@ -30,7 +30,7 @@ Issue a search query to Brewery database.
 Brewery.prototype.search = function(query) {
   var result = http().get(baseurl + "search?q=" + encodeURIComponent(query) + "&key=" + this.apiKey + "&type=" + this.type);
   var json = JSON.parse(result.body);
-  return json.results;  
+  return json.data;  
 
 }
 
@@ -42,7 +42,7 @@ This a premium endpoint
 Brewery.prototype.geo = function(coord) {
   var result = http().get(baseurl + "search/geo/point?" + encodeURIComponent(coord) + "&key=" + this.apiKey + "&type=" + this.type);
   var json = JSON.parse(result.body);
-  return json.results;    
+  return json.data;    
 }
 
 /*
@@ -53,7 +53,7 @@ Issue a search query to Brewery database.
 Brewery.prototype.style = function(style) {
   var result = http().get(baseurl + "search/style?q=" + encodeURIComponent(style) + "&key=" + this.apiKey + "&type=" + this.type);
   var json = JSON.parse(result.body);
-  return json.results;  
+  return json.data;  
 }
 
 
@@ -62,26 +62,27 @@ Brewery.prototype.style = function(style) {
 */
 Brewery.prototype.extra = function(id) {
     var resultJson = http().get(baseurl + this.type + "/" + id + "/" + "?key=" + this.apiKey );
-    var result = JSON.parse(resultJson.body); 
-    if (result['data'].id !== undefined) 
-        result['id'] = result.data.id ;
-    if (result['data'].name !== undefined) 
-        result['name'] = result.data.name;
-    if (result['data'].abv !== undefined)
-        result['abv'] = result.data.abv;
-    if (result['data'].ibu !== undefined)  
-        result['ibu'] = result.data.ibu;
-    if (result['data'].style !== undefined) 
-        result['style'] = result.data.style['id'] + ";" + result.data.style['name'] + ". " + result.data.style['description'];
-    if (result['data'].glass !== undefined) 
-        result['glass'] = result.data.glass['id'] + "; " + result.data.glass['name'];
-    if (result['data'].labels !== undefined)
-        result['labels'] = result.data.labels['medium'];
-    if (result['data'].foodPairings !== undefined) 
-        result['foodPairings'] = result.data.foodPairings;
-    if (result['data'].description !== undefined) 
-        result['description'] = result.data.description;
-    if (result['data'].available !== undefined) 
-        result['available'] = result.data.available['name'] + ": " + result.data.available['description'];
+    var res = JSON.parse(resultJson.body); 
+    var result = {};
+    if (res.data.id !== undefined) 
+        result['id'] = res.data.id ;
+    if (res.data.name !== undefined) 
+        result['name'] = res.data.name;
+    if (res.data.abv !== undefined)
+        result['abv'] = res.data.abv;
+    if (res.data.ibu !== undefined)  
+        result['ibu'] = res.data.ibu;
+    if (res.data.style !== undefined) 
+        result['style'] = res.data.style['id'] + ";" + res.data.style['name'] + ". " + res.data.style['description'];
+    if (res.data.glass !== undefined) 
+        result['glass'] = res.data.glass['id'] + "; " + res.data.glass['name'];
+    if (res.data.labels !== undefined)
+        result['labels'] = res.data.labels['medium'];
+    if (res.data.foodPairings !== undefined) 
+        result['foodPairings'] = res.data.foodPairings;
+    if (res.data.description !== undefined) 
+        result['description'] = res.data.description;
+    if (res.data.available !== undefined) 
+        result['available'] = res.data.available['name'] + ": " + res.data.available['description'];
     return result;
 }
