@@ -1,18 +1,23 @@
 /*
-The data source for obtaining information from brewerydb.com.
-See http://www.brewerydb.com/developers/docs
-@param {string} apiKey - Consumer key.
-@param {string} type - Type of search, one of
+Library for a custom data source for Memento DataBase
+to obtaining information from the api at brewerydb.com.
+See http://www.brewerydb.com/developers/docs.
+@param {string} apiKey -- api key.
+@param {string} type   -- Type of search, one of
     brewery
     beer
     guild
     event
 Leave blank to search all sources
-Api key can be obtained by this link : http://www.brewerydb.com/developers/
+Api key can be obtained from: 
+http://www.brewerydb.com/developers/
 @example
 var brewery = new Brewery("Api key" , "beer" );
 var r = brewery.search(query);
 result( r , function(id) { return brewery.extra(id);});
+
+Follows example at
+https://github.com/mementodatabase/scripts/blob/master/data-sources/discogs.js
 */
 var baseurl = 'https://api.brewerydb.com/v2/';
 function Brewery (apiKey , type) {
@@ -31,7 +36,7 @@ Brewery.prototype.search = function(query) {
 /*
 Issue a search query to Brewery database.
 @param {string} code - Search geopoint.
-This a premium endpoint
+coord = 'lat=35.772096&lng=-78.638614'
 */
 Brewery.prototype.geo = function(coord) {
   var result = http().get(baseurl + "search/geo/point?" + encodeURIComponent(coord) + "&key=" + this.apiKey + "&type=" + this.type);
@@ -48,6 +53,7 @@ Brewery.prototype.style = function(style) {
   return json.data;
 }
 /*
+Function to retrieve full record by id
 @param {string} id - The resource identifier.
 */
 Brewery.prototype.extra = function(id) {
