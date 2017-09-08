@@ -12,7 +12,7 @@ result( r , function(id) { return openweather.extra(id);});
 Follows example at
 https://github.com/mementodatabase/scripts/blob/master/data-sources/discogs.js
 */
-var baseurl = 'api.openweathermap.org/data/2.5/weather?';
+var baseurl = 'http://api.openweathermap.org/data/2.5/weather?';
 function Openweather (apiKey ) {
     this.apiKey = apiKey;
 }
