@@ -31,7 +31,7 @@ Openweather.prototype.search = function(coord) {
       result['location'] = res.data["name"];
   if (res.data.weather !== undefined) {
       result['conditions'] = res.data.weather["main"];
-      result['detail'] res.data.weather["description"];
+      result['detail'] = res.data.weather["description"];
       result['icon'] = "http://openweathermap.org/img/w/" + res.data.weather["icon"] + ".png";
   }
   if (res.data.main !== undefined) {
