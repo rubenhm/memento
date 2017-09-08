@@ -22,7 +22,7 @@ Issue a search query to openweather database.
 coord = 'lat=35.772096&lon=-78.638614'
 */
 Openweather.prototype.search = function(coord) {
-  var resultJson = http().get(baseurl + encodeURIComponent(coord) + "&appid=" + this.apiKey );
+  var resultJson = http().get(baseurl + coord + "&appid=" + this.apiKey );
   var res = JSON.parse(resultJson.body);
   var result = {};
   if (res.data.id !== undefined)
