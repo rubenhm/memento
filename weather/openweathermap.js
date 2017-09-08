@@ -26,25 +26,28 @@ Openweather.prototype.search = function(coord) {
   var res = JSON.parse(resultJson.body);
   var result = {};
   if (res.id !== undefined)
-      result['id'] = res["id"];
+      result['id'] = res['id'];
   if (res.name !== undefined)
-      result['location'] = res["name"];
+      result['location'] = res['name'];
   if (res.weather !== undefined) {
-      result['conditions'] = res.weather["main"];
-      result['detail'] = res.weather["description"];
-      result['icon'] = "http://openweathermap.org/img/w/" + res.weather["icon"] + ".png";
+      result['conditions'] = res.weather['main'];
+      result['detail'] = res.weather['description'];
+      result['icon'] = "http://openweathermap.org/img/w/" + res.weather['icon'] + ".png";
   };
   if (res.main !== undefined) {
-      result['temperature'] = res.main["temp"];
-      result['humidity'] = res.main["humidity"];
-      result['pressure'] = res.main["pressure"];
+      result['temperature'] = res.main['temp'];
+      result['humidity'] = res.main['humidity'];
+      result['pressure'] = res.main['pressure'];
   };
   if (res.wind !== undefined)
-      result['windspeed'] = res.wind["speed"];
+      result['windspeed'] = res.wind['speed'];
   if (res.clouds !== undefined)
-      result['clouds'] = res.clouds["all"];
-  if (res.rain !== undefined)
-      result['rain'] = res.rain["3h"];
+      result['clouds'] = res.clouds['all'];
+  if (res.rain !== undefined) {
+      result['rain'] = res.rain['3h'];
+} else {
+      result['rain'] = "No rain";
+}
   if (res.sys !== undefined) {
       result['sunrise'] = res.sys['sunrise'];
       result['sunset'] = res.sys['sunset'];
