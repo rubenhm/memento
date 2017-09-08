@@ -30,9 +30,9 @@ Openweather.prototype.search = function(coord) {
   if (res.name !== undefined)
       result['location'] = res['name'];
   if (res.weather !== undefined) {
-      result['conditions'] = res.weather['main'];
-      result['detail'] = res.weather['description'];
-      result['icon'] = "http://openweathermap.org/img/w/" + res.weather['icon'] + ".png";
+      result['conditions'] = res.weather[0]['main'];
+      result['detail'] = res.weather[0]['description'];
+      result['icon'] = "http://openweathermap.org/img/w/" + res.weather[0]['icon'] + ".png";
   };
   if (res.main !== undefined) {
       result['temperature'] = res.main['temp'];
