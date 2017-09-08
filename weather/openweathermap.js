@@ -13,7 +13,7 @@ Follows example at
 https://github.com/mementodatabase/scripts/blob/master/data-sources/discogs.js
 */
 var baseurl = 'api.openweathermap.org/data/2.5/weather?';
-function openweather (apiKey ) {
+function Openweather (apiKey ) {
     this.apiKey = apiKey;
 }
 /*
@@ -21,7 +21,7 @@ Issue a search query to openweather database.
 @param {string} coord: Search by coordinates
 coord = 'lat=35.772096&lon=-78.638614'
 */
-openweather.prototype.search = function(coord) {
+Openweather.prototype.search = function(coord) {
   var resultJson = http().get(baseurl + encodeURIComponent(coord) + "&appid=" + this.apiKey );
   var res = JSON.parse(resultJson.body);
   var result = {};
@@ -42,7 +42,7 @@ openweather.prototype.search = function(coord) {
   if (res.data.wind !== undefined)
       result['windspeed'] = res.data.wind["speed"];
   if (res.data.clouds !== undefined)
-      result['cloudy'] = res.data.clouds["all"];
+      result['clouds'] = res.data.clouds["all"];
   if (res.data.rain !== undefined)
       result['rain'] = res.data.rain["3h"];
   if (res.data.sys !== undefined) {
