@@ -33,12 +33,12 @@ Openweather.prototype.search = function(coord) {
       result['conditions'] = res.data.weather["main"];
       result['detail'] = res.data.weather["description"];
       result['icon'] = "http://openweathermap.org/img/w/" + res.data.weather["icon"] + ".png";
-  }
+  };
   if (res.data.main !== undefined) {
       result['temperature'] = res.data.main["temp"];
       result['humidity'] = res.data.main["humidity"];
       result['pressure'] = res.data.main["pressure"];
-  }
+  };
   if (res.data.wind !== undefined)
       result['windspeed'] = res.data.wind["speed"];
   if (res.data.clouds !== undefined)
@@ -48,6 +48,6 @@ Openweather.prototype.search = function(coord) {
   if (res.data.sys !== undefined) {
       result['sunrise'] = res.data.sys['sunrise'];
       result['sunset'] = res.data.sys['sunset'];
-  }
+  };
   return result;
 }
